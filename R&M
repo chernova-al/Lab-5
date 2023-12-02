@@ -1,0 +1,35 @@
+import requests
+import json
+# вариант 9
+
+#response = requests.get("https://rickandmortyapi.com/")
+#print(response.text)
+
+while True:
+    fact = input('1 - characters, 2 - locations, 3 - episodes, 0 - exit: ')
+    match fact:
+        case '1':
+            idi = input('Enter the id: ')
+            response = requests.get(f'https://rickandmortyapi.com/api/character/{idi}')
+            data = dict(response.json())
+            ind = ['id','name', 'status', 'species','gender','url','image']
+            for x in range (len(ind)):
+                print(ind[x],':',data[ind[x]])
+        case '2':
+            idi = input('Enter the id: ')
+            response = requests.get(f'https://rickandmortyapi.com/api/location/{idi}')
+            data = dict(response.json())
+            ind = ['id', 'name', 'type', 'dimension', 'url']
+            for x in range (len(ind)):
+                print(ind[x],':',data[ind[x]])
+        case '3':
+            idi = input('Enter the id: ')
+            response = requests.get(f'https://rickandmortyapi.com/api/episode/{idi}')
+            data = dict(response.json())
+            ind = ['id', 'name', 'air_date', 'episode', 'url']
+            for x in range(len(ind)):
+                print(ind[x], ':', data[ind[x]])
+        case '0':
+            break
+        case _:
+            print("Wrong type!")
