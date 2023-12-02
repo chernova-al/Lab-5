@@ -4,5 +4,8 @@ import requests
 city_name = input('Enter the city name: ')
 key = 'd67a16bd395b80ee2176de4802877839'
 response = requests.post(f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={key}')
-result = json.loads(response.text)
-print(result)
+ind = ['weather','main']
+result = dict(json.loads(response.text))
+print('weather: ', dict(*result['weather'])['description'])
+print('humidity: ',result['main']['humidity'],'%')
+print('pressure: ',result['main']['pressure'],'Pa')
